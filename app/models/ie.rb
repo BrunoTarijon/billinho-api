@@ -1,0 +1,2 @@
+class Ie < ApplicationRecord
+end
