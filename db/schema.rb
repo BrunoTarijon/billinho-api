@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_19_225549) do
+ActiveRecord::Schema.define(version: 2021_12_24_172913) do
+
+  create_table "alunos", force: :cascade do |t|
+    t.string "nome"
+    t.string "cpf"
+    t.date "data_nascimento"
+    t.integer "telefone"
+    t.string "genero"
+    t.string "tipo_pagamento"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "ies", force: :cascade do |t|
     t.string "nome"
