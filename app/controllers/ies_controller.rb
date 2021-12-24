@@ -1,6 +1,5 @@
 class IesController < ApplicationController
-  skip_before_action :verify_authenticity_token #Remoce csrf_token
-
+  skip_before_action :verify_authenticity_token #Remove csrf_token
   def index
     @ies = Ie.all
     respond_to do |format|
@@ -19,7 +18,10 @@ class IesController < ApplicationController
     if ie.save
       redirect_to '/ies'
     else
-      print("Erro ao salvar modelo")
+      @errors = ie.errors.messages
+      respond_to do |format|
+        format.json
+      end
     end
   end
 
@@ -32,7 +34,10 @@ class IesController < ApplicationController
     if ie.update(nome:data_parsed["nome"], cnpj:data_parsed["cnpj"], tipo:data_parsed["tipo"])
       redirect_to '/ies'
     else
-      print("Erro ao atualizar item")
+      @errors = ie.errors.messages
+      respond_to do |format|
+        format.json
+      end
     end
   end
 
@@ -41,7 +46,10 @@ class IesController < ApplicationController
     if ie.destroy
       redirect_to "/ies"
     else
-      print("Erro ao deletar")
+      @errors = ie.errors.messages
+      respond_to do |format|
+        format.json
+      end
     end
   end
 end
