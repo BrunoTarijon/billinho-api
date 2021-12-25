@@ -1,0 +1,5 @@
+{
+    <% @errors.each do |error| %>
+    <%= raw(error.to_json) %>
+    <% end %>
+}
