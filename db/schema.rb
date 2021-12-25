@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_24_172913) do
+ActiveRecord::Schema.define(version: 2021_12_24_214144) do
 
   create_table "alunos", force: :cascade do |t|
     t.string "nome"
@@ -31,4 +31,19 @@ ActiveRecord::Schema.define(version: 2021_12_24_172913) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "matriculas", force: :cascade do |t|
+    t.decimal "valor_total"
+    t.integer "qtd_fatura"
+    t.integer "dia_vencimento"
+    t.string "nome_curso"
+    t.integer "ie_id", null: false
+    t.integer "aluno_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["aluno_id"], name: "index_matriculas_on_aluno_id"
+    t.index ["ie_id"], name: "index_matriculas_on_ie_id"
+  end
+
+  add_foreign_key "matriculas", "alunos"
+  add_foreign_key "matriculas", "ies"
 end
