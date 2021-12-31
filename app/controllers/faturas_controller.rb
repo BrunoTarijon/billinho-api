@@ -1,0 +1,2 @@
+class FaturasController < ApplicationController
+end

@@ -15,4 +15,6 @@ class Matricula < ApplicationRecord
   validates :qtd_fatura, comparison: { greater_than: 0, message: "Quantidade de fatura nao pode ser menor que 1" }
   validates :dia_vencimento, comparison: { greater_than: 0, less_than_or_equal_to: 31,
                                            message: "Dia de vencimento nao pode ser menor que 1 ou maior que 31" }
+
+  has_many :matricula_fatura, class_name: "Fatura", foreign_key: "matricula_id"
 end
