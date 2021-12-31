@@ -3,13 +3,12 @@ class MatriculasController < ApplicationController
 
   def index
     @matriculas = Matricula.all
-    respond_to do |format|
-      format.json
-    end
+    render json: @matriculas
   end
 
   def show
     @matricula = Matricula.find(params[:id])
+    render json: @matricula
   end
 
   def create
@@ -31,9 +30,7 @@ class MatriculasController < ApplicationController
       redirect_to "/matricula"
     else
       @errors = matricula.errors.messages
-      respond_to do |format|
-        format.json
-      end
+      render json: @errors
     end
   end
 
@@ -57,9 +54,7 @@ class MatriculasController < ApplicationController
       redirect_to "/matricula"
     else
       @errors = matricula.errors.messages
-      respond_to do |format|
-        format.json
-      end
+      render json: @errors
     end
   end
 
@@ -69,9 +64,7 @@ class MatriculasController < ApplicationController
       redirect_to "/matricula"
     else
       @errors = matricula.errors.messages
-      respond_to do |format|
-        format.json
-      end
+      render json: @errors
     end
   end
 end
