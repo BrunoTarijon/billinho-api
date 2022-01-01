@@ -16,7 +16,7 @@ class IesController < ApplicationController
     data_parsed = JSON.parse(information)
     ie = Ie.new(nome: data_parsed["nome"], cnpj: data_parsed["cnpj"], tipo: data_parsed["tipo"])
     if ie.save
-      redirect_to "/ies"
+      render json: ie
     else
       @errors = ie.errors.messages
       render json: @errors
@@ -30,7 +30,7 @@ class IesController < ApplicationController
     ie = Ie.find(params[:id])
 
     if ie.update(nome: data_parsed["nome"], cnpj: data_parsed["cnpj"], tipo: data_parsed["tipo"])
-      redirect_to "/ies"
+      render json: ie
     else
       @errors = ie.errors.messages
       render json: @errors
@@ -40,7 +40,7 @@ class IesController < ApplicationController
   def destroy
     ie = Ie.find(params[:id])
     if ie.destroy
-      redirect_to "/ies"
+      render json: ie
     else
       @errors = ie.errors.messages
       render json: @errors

@@ -23,7 +23,7 @@ class AlunosController < ApplicationController
       tipo_pagamento: data_parsed["tipo_pagamento"],
     )
     if aluno.save
-      redirect_to "/alunos"
+      render json: aluno
     else
       @errors = aluno.errors.messages
       render json: @errors
@@ -44,7 +44,7 @@ class AlunosController < ApplicationController
       genero: data_parsed["genero"],
       tipo_pagamento: data_parsed["tipo_pagamento"],
     )
-      redirect_to "/alunos"
+      render json: aluno
     else
       @errors = aluno.errors.messages
       render json: @errors
@@ -54,7 +54,7 @@ class AlunosController < ApplicationController
   def destroy
     aluno = Aluno.find(params[:id])
     if aluno.destroy
-      redirect_to "/alunos"
+      render json: aluno
     else
       @errors = aluno.errors.messages
       render json: errors
